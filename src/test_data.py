@@ -2,16 +2,16 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 
-# 定义数据路径
+# self define the root
 TRAIN_X = "/Users/jaaasnyu/Desktop/DNA_Classification_Project/data/processed/X_train.npy"
 TEST_X = "/Users/jaaasnyu/Desktop/DNA_Classification_Project/data/processed/X_test.npy"
 TRAIN_Y = "/Users/jaaasnyu/Desktop/DNA_Classification_Project/data/processed/y_train.npy"
 TEST_Y = "/Users/jaaasnyu/Desktop/DNA_Classification_Project/data/processed/y_test.npy"
 
 def load_data():
-    """ 加载 NumPy 数据 """
+    """ loading NumPy data """
     if not all(os.path.exists(f) for f in [TRAIN_X, TEST_X, TRAIN_Y, TEST_Y]):
-        print("❌ 数据文件未找到，请先运行 split_data.py")
+        print("❌ need to run split_data.py first")
         return
     
     X_train = np.load("/Users/jaaasnyu/Desktop/DNA_Classification_Project/data/processed/X_train.npy")
@@ -19,20 +19,20 @@ def load_data():
     y_train = np.load(TRAIN_Y)
     y_test = np.load(TEST_Y)
 
-    # 打印数据形状
-    print("✅ 数据加载成功！")
-    print(f"🔹 X_train shape: {X_train.shape}")  # (样本数, 序列长度, 4)
-    print(f"🔹 X_test shape: {X_test.shape}")    # (样本数, 序列长度, 4)
-    print(f"🔹 y_train shape: {y_train.shape}")  # (样本数,)
-    print(f"🔹 y_test shape: {y_test.shape}")    # (样本数,)
+    # print the shape of the data
+    print("✅ successfully loaded the data")
+    print(f"🔹 X_train shape: {X_train.shape}")  # (sample shape, sequence length, 4)
+    print(f"🔹 X_test shape: {X_test.shape}")    # (sample shape, sequence length, 4)
+    print(f"🔹 y_train shape: {y_train.shape}")  # (sample shape,)
+    print(f"🔹 y_test shape: {y_test.shape}")    # (sample shape,)
 
-    # 检查类别分布
+    # check the type discribution 
     unique, counts = np.unique(y_train, return_counts=True)
-    print(f"📊 训练集类别分布: {dict(zip(unique, counts))}")
+    print(f"📊 Category distribution of the training set: {dict(zip(unique, counts))}")
     unique, counts = np.unique(y_test, return_counts=True)
-    print(f"📊 测试集类别分布: {dict(zip(unique, counts))}")
+    print(f"📊 Category distribution of the training set: {dict(zip(unique, counts))}")
 
-    # 可视化一个 DNA 序列的 One-hot 编码
+    # Visualize One-hot encoding of a DNA sequence
     plt.imshow(X_train[0].T, cmap="viridis", aspect="auto")
     plt.colorbar(label="One-hot Encoding")
     plt.xlabel("DNA Sequence Position")
