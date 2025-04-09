@@ -73,7 +73,7 @@ python src/train.py
 ```bash
 python src/train_augmented.py
 ```
-### 4️⃣ Evaluate model
+### Evaluate model
 Results are saved in the `results/` folder.
 
 ## Future Improvements
